@@ -585,6 +585,8 @@ async def create_upload_file(file: UploadFile = File(...)):
             try: tmp_path.unlink()
             except Exception: pass
 
+# In SiftAI-main/main.py, replace the whole function with this:
+
 @app.post("/demo/run", summary="Run chatbot.js inside isolated workspace and return outputs")
 async def run_chatbot_demo(payload: Dict[str, Any]):
     """
@@ -654,7 +656,14 @@ async def run_chatbot_demo(payload: Dict[str, Any]):
 
     env = os.environ.copy()
     t0 = time.time()
+
+    # --- Execute the chatbot.js script ---
     proc = subprocess.run(cmd, cwd=str(ws_path), env=env, capture_output=True, text=True, timeout=timeout_sec, check=False)
+    
+    # --- Print the output from the script for debugging ---
+    print(f"--- chatbot.js stdout ---\n{proc.stdout}\n-------------------------")
+    print(f"--- chatbot.js stderr ---\n{proc.stderr}\n-------------------------")
+
     duration = time.time() - t0
 
     def _read_json_safe(path: Path):

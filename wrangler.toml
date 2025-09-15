@@ -1,4 +1,0 @@
-name = "data-analyzer-worker"
-main = "src/main.py"  # Assumes main.py is in a src/ directory
-compatibility_flags = ["python_workers"]
-compatibility_date = "2025-09-14"  
