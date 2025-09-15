@@ -42,4 +42,4 @@ EXPOSE 8000
 
 # --- Run the Application with Doppler ---
 # Explicitly set the project and config to remove ambiguity
-CMD ["doppler", "run", "--", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["doppler", "run", "--", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", ${PORT}]
